@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include "MLX42.h"
+#include "so_long.h"
 
 int main(void)
 {
@@ -10,3 +9,4 @@ int main(void)
     //free(mlx_ptr);
 	exit(0);
 }
+
