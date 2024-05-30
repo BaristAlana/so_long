@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/05/30 11:27:35 by aherbin          ###   ########.fr        #
+#    Updated: 2024/05/30 11:35:05 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,9 @@ CCFLAGS = -Wall -Wextra -Werror
 
 INCLUDES = -Iinclude -IMLX42/include -Ilibft/include
 
-LIBFT = libft.a
+LIBFT = libft/libft.a
 
-#MLX42 = -LMLX42 -lmlx42 -ldl -lglfw -lm -lpthread
-
-LIBLINKS = -Llibft -lft -LMLX42 -lmlx42 -ldl -lglfw -lm -lpthread
+CC_LINKER = -Llibft -lft -LMLX42 -lmlx42 -ldl -lglfw -lm -lpthread
 
 RM = rm -f
 
@@ -49,15 +47,19 @@ SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(C_FILES)))
 
 all: $(NAME)
 
-$(NAME) : libft/$(LIBFT) $(SRC)
-	$(CC) $(SRC) $(CCFLAGS) $(INCLUDES) $(LIBLINKS) -o $(NAME)
+$(NAME): $(LIBFT) $(SRC)
+	$(CC) $(SRC) $(CCFLAGS) $(INCLUDES) $(CC_LINKER) -o $(NAME)
 	@echo "$(GREEN)$@ $(BLUE)successfully compiled"
+
+$(LIBFT):
+	make -C libft
 
 clean:
 	@$(RM) $(NAME)
 	@echo "$(RED)$(NAME) $(BLUE)successfully deleted"
 
 fclean: clean
+	make fclean -C libft
 #	@$(RM) $(NAME)
 #	@echo "$(RED)$(NAME) $(BLUE)successfully deleted"
 
