@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:16:25 by aherbin           #+#    #+#             */
-/*   Updated: 2024/05/30 16:34:17 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/05/30 17:02:07 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,61 @@ Check for typos or permissions!", EXIT_FAILURE);
 	return (map);
 }
 
+void	exit_invalid_map(char **map)
+{
+	free_map(map);
+	ft_exit("Map appears to be invalid.", EXIT_FAILURE);
+}
+
+void	check_collectibles(char **map, int exit, int player)
+{
+	int	i;
+	int	j;
+	int	c;
+
+	c = 0;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+				++c;
+			++j;
+		}
+		++i;
+	}
+	if (exit != 1 || player != 1 || c < 1)
+		exit_invalid_map(map);
+}
+
+void	check_player_exit(char **map)
+{
+	int	i;
+	int	j;
+	int	e;
+	int	p;
+
+	e = 0;
+	p = 0;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'E')
+				++e;
+			else if (map[i][j] == 'P')
+				++p;
+			++j;
+		}
+		++i;
+	}
+	check_collectibles(map, e, p);
+}
+
 void	is_map_bordered(char **map, int len)
 {
 	int	i;
@@ -92,24 +147,17 @@ void	is_map_bordered(char **map, int len)
 	while (map[i])
 	{
 		if (map[i][0] != '1' || map[i][len - 2] != '1')
-		{
-			free_map(map);
-			ft_exit("1 Map appears to be invalid. \
-Please provide a valid .ber file!", EXIT_FAILURE);
-		}
+			exit_invalid_map(map);
 		++i;
 	}
 	j = 0;
 	while (j < len - 1)
 	{
 		if (map[i - 1][j] != '1' || map[0][j] != '1')
-		{
-			free_map(map);
-			ft_exit("2 Map appears to be invalid. \
-Please provide a valid .ber file!", EXIT_FAILURE);
-		}
+			exit_invalid_map(map);
 		++j;
 	}
+	check_player_exit(map);
 }
 
 void	check_map(char **map)
@@ -124,17 +172,11 @@ void	check_map(char **map)
 	{
 		j = 0;
 		if ((int)ft_strlen(map[i]) != len)
-		{
-			free_map(map);
-			ft_exit("Map appears to be invalid.", EXIT_FAILURE);
-		}
+			exit_invalid_map(map);
 		while (map[i][j])
 		{
 			if (ft_strchr("01CEP\n", map[i][j]) == NULL)
-			{
-				free_map(map);
-				ft_exit("Map appears to be invalid.", EXIT_FAILURE);
-			}
+				exit_invalid_map(map);
 			++j;
 		}
 		++i;
