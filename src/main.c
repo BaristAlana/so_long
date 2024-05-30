@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:16:25 by aherbin           #+#    #+#             */
-/*   Updated: 2024/05/30 16:31:57 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/05/30 16:34:17 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,8 @@ void	check_map(char **map)
 
 int	check_file_extension(char *file)
 {
-	int	len;
-	char *temp;
+	int		len;
+	char	*temp;
 
 	temp = ft_strrchr(file, '.');
 	if (!temp)
@@ -164,6 +164,7 @@ int	main(int argc, char **argv)
 		ft_exit("Please put a valid map file!", EXIT_FAILURE);
 	map = read_map(argv[1]);
 	check_map(map);
+
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -171,7 +172,7 @@ int	main(int argc, char **argv)
 /* ************************************************************************** */
 
 	int	i = 0;
-	while(map[i])
+	while (map[i])
 	{
 		ft_putstr_fd(map[i], 1);
 		++i;
