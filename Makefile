@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/05/30 11:35:05 by aherbin          ###   ########.fr        #
+#    Updated: 2024/05/30 15:00:18 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(C_FILES)))
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(SRC)
-	$(CC) $(SRC) $(CCFLAGS) $(INCLUDES) $(CC_LINKER) -o $(NAME)
+	$(CC) -g $(SRC) $(CCFLAGS) $(INCLUDES) $(CC_LINKER) -o $(NAME)
 	@echo "$(GREEN)$@ $(BLUE)successfully compiled"
 
 $(LIBFT):
