@@ -2,6 +2,7 @@
 	"files.associations": {
 		"mlx42.h": "c",
 		"fcntl.h": "c",
-		"so_long.h": "c"
+		"so_long.h": "c",
+		"libft.h": "c"
 	}
 }

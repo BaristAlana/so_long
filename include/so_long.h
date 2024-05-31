@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/05/31 10:53:15 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/05/31 14:55:02 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 # include <unistd.h>
 
 # include <fcntl.h>
+
+typedef struct s_player
+{
+	int	player_x;
+	int	player_y;
+	int	exit_x;
+	int	exit_y;
+}				t_player;
 
 /* ************************************************************************** */
 /*                                 so_long.c                                  */
@@ -50,5 +58,11 @@ int		n_line_gnl(int fd);
 void	check_map(char **map);
 
 char	**read_map(char *file);
+
+/* ************************************************************************** */
+/*                                 so_long.c                                  */
+/* ************************************************************************** */
+
+int	flood_fill(char **map, t_player *player);
 
 #endif
