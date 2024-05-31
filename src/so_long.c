@@ -1,54 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/05/31 10:53:15 by aherbin          ###   ########.fr       */
+/*   Created: 2024/05/30 11:16:25 by aherbin           #+#    #+#             */
+/*   Updated: 2024/05/31 11:02:29 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../include/so_long.h"
 
-# include "../MLX42/include/MLX42/MLX42.h"
+int	main(int argc, char **argv)
+{
+	char	**map;
 
-# include "libft.h"
-
-# include <stdlib.h>
-
-# include <math.h>
-
-# include <unistd.h>
-
-# include <fcntl.h>
-
+	if (argc != 2 || (argc == 2 && !argv[1]) || check_file_extension(argv[1]))
+		ft_exit("Please put a valid map file!", EXIT_FAILURE);
+	map = read_map(argv[1]);
+	check_map(map);
 /* ************************************************************************** */
-/*                                 so_long.c                                  */
 /* ************************************************************************** */
-
 /* ************************************************************************** */
-/*                                  utils.c                                   */
 /* ************************************************************************** */
-
-int		check_file_extension(char *file);
-
-int		ft_exit(char *errmsg, int status);
-
-void	free_map(char **map);
-
-void	exit_invalid_map(char **map);
-
-int		n_line_gnl(int fd);
-
 /* ************************************************************************** */
-/*                                 map_tools.c                                */
-/* ************************************************************************** */
-
-void	check_map(char **map);
-
-char	**read_map(char *file);
-
-#endif
+	int	i = 0;
+	while (map[i])
+	{
+		ft_putstr_fd(map[i], 1);
+		++i;
+	}
+	free_map(map);
+}

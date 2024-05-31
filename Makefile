@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/05/30 15:00:18 by aherbin          ###   ########.fr        #
+#    Updated: 2024/05/31 10:49:10 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ GREEN = \033[1;32m
 RED = \033[1;31m
 BLUE = \033[0;34m
 
-C_FILES = main
+C_FILES = so_long utils map_tools
 
 SRC_DIR = src/
 
