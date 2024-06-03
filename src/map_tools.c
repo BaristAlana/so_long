@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:49:41 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/03 11:00:33 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/03 11:05:54 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static void	is_map_bordered(char **map, int len, t_player *player)
 		++j;
 	}
 	if (count_component(map, 'E', NULL) != 1 \
-	|| count_component(map, 'P', NULL) != 1 || count_component(map, 'C', player) < 1)
+	|| count_component(map, 'P', NULL) != 1 \
+	|| count_component(map, 'C', player) < 1)
 		exit_invalid_map(map);
 }
 
