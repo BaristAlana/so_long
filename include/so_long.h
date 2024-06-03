@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/03 11:00:45 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/03 11:41:35 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,21 @@ typedef struct s_player
 	int	exit_x;
 	int	exit_y;
 	int	collec;
-	int	score;
 }				t_player;
+
+/* ************************************************************************** */
+/*                                  Assets                                    */
+/* ************************************************************************** */
+
+# define bg_img "../assets/background.png"
+
+# define wall_img "../assets/wall.png"
+
+# define player_img "../assets/player.png"
+
+# define collec_img "../assets/collec.png"
+
+# define exit_img "../assets/exit.png"
 
 /* ************************************************************************** */
 /*                                 so_long.c                                  */
