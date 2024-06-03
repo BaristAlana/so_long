@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/05/31 14:55:02 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/03 11:00:45 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_player
 	int	player_y;
 	int	exit_x;
 	int	exit_y;
+	int	collec;
+	int	score;
 }				t_player;
 
 /* ************************************************************************** */
@@ -55,7 +57,7 @@ int		n_line_gnl(int fd);
 /*                                 map_tools.c                                */
 /* ************************************************************************** */
 
-void	check_map(char **map);
+void	check_map(char **map, t_player *player);
 
 char	**read_map(char *file);
 

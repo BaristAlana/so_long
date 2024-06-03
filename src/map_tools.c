@@ -6,13 +6,13 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:49:41 by aherbin           #+#    #+#             */
-/*   Updated: 2024/05/31 11:02:15 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/03 11:00:33 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static int	count_component(char **map, char component)
+static int	count_component(char **map, char component, t_player *player)
 {
 	int	i;
 	int	j;
@@ -31,10 +31,12 @@ static int	count_component(char **map, char component)
 		}
 		++i;
 	}
+	if (component == 'C')
+		player->collec = c;
 	return (c);
 }
 
-static void	is_map_bordered(char **map, int len)
+static void	is_map_bordered(char **map, int len, t_player *player)
 {
 	int	i;
 	int	j;
@@ -53,8 +55,8 @@ static void	is_map_bordered(char **map, int len)
 			exit_invalid_map(map);
 		++j;
 	}
-	if (count_component(map, 'E') != 1 \
-	|| count_component(map, 'P') != 1 || count_component(map, 'C') < 1)
+	if (count_component(map, 'E', NULL) != 1 \
+	|| count_component(map, 'P', NULL) != 1 || count_component(map, 'C', player) < 1)
 		exit_invalid_map(map);
 }
 
@@ -88,7 +90,7 @@ Check for typos or permissions!", EXIT_FAILURE);
 	return (map);
 }
 
-void	check_map(char **map)
+void	check_map(char **map, t_player *player)
 {
 	int	len;
 	int	i;
@@ -109,5 +111,5 @@ void	check_map(char **map)
 		}
 		++i;
 	}
-	is_map_bordered(map, len);
+	is_map_bordered(map, len, player);
 }

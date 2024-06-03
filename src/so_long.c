@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:16:25 by aherbin           #+#    #+#             */
-/*   Updated: 2024/05/31 14:55:47 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/03 11:03:26 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	main(int argc, char **argv)
 	if (argc != 2 || (argc == 2 && !argv[1]) || check_file_extension(argv[1]))
 		ft_exit("Please put a valid map file!", EXIT_FAILURE);
 	map = read_map(argv[1]);
-	check_map(map);
 	player = malloc(sizeof(t_player));
+	check_map(map, player);
 	if (!player)
 		exit_invalid_map(map);
 	map_2 = read_map(argv[1]);
