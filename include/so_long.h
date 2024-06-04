@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/04 11:33:14 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/04 15:23:21 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_player
 	int	exit_x;
 	int	exit_y;
 	int	collec;
+	int	total_col;
+	int	move;
 }				t_player;
 
 typedef struct s_text{
@@ -60,6 +62,9 @@ typedef struct s_so_long {
 	t_text		*text;
 }				t_so_long;
 
+# ifndef SIZE
+#  define SIZE 128
+# endif
 
 /* ************************************************************************** */
 /*                                  Assets                                    */
@@ -113,12 +118,20 @@ int	flood_fill(char **map, t_player *player);
 
 void	image_setup(t_so_long *game);
 
+void	image_clear(t_so_long	*game);
+
 void	texture_setup(t_so_long *game);
 
-int win_setup(char **map, t_so_long *game, t_player *player);
+int		win_setup(char **map, t_so_long *game, t_player *player);
 
 
 
-void	my_key_hook(mlx_key_data_t keydata, void *param);
+void	ft_key_hook(mlx_key_data_t keydata, void *param);
+
+
+void	window_error(t_so_long *game);
+
+
+void	ft_collec(t_so_long *game);
 
 #endif

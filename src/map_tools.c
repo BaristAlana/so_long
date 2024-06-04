@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:49:41 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/03 11:53:53 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/04 14:14:51 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ static int	count_component(char **map, char component, t_player *player)
 		++i;
 	}
 	if (component == 'C')
+	{
 		player->collec = c;
+		player->total_col = c;
+	}
 	return (c);
 }
 

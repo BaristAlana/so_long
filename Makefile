@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/06/04 11:21:17 by aherbin          ###   ########.fr        #
+#    Updated: 2024/06/04 15:13:24 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ GREEN = \033[1;32m
 RED = \033[1;31m
 BLUE = \033[0;34m
 
-C_FILES = so_long utils map_tools flood_fill window movement
+C_FILES = so_long utils map_tools flood_fill window movement score win_utils
 
 SRC_DIR = src/
 

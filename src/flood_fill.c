@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 11:24:31 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/03 11:05:37 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/04 15:10:37 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,6 @@ int	flood_fill(char **map, t_player *player)
 	depth_first_search(map, player->player_x, player->player_y, player);
 	i = player->exit_x;
 	j = player->exit_y;
-//////////////////////////////////////////////////////////////////
-	ft_printf("player x = %i, player y = %i\
- \n", player->player_x, player->player_y);
-	ft_printf("exit x = %i, exit y = %i \n", player->exit_x, player->exit_y);
-	ft_printf("collectibles remaining: %i\n", player->collec);
-//////////////////////////////////////////////////////////////////
 	if ((map[i + 1][j] == '.' || map[i - 1][j] == '.'\
 	|| map[i][j + 1] == '.' || map[i][j - 1] == '.') && player->collec == 0)
 	{
