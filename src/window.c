@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 11:23:24 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/04 15:23:23 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/04 15:40:03 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_so_long	*canvas_setup(t_so_long *game, t_player *player)
 	game->mlx = mlx_init(game->width * SIZE, \
 	game->height * SIZE, "So Long", true);
 	if (!game->mlx)
-		window_error(game);
+		window_exit(game, EXIT_FAILURE);
 	ft_printf("x= %i, y= %i\n", game->width, game->height);
 	texture_setup(game);
 	return (game);
@@ -70,17 +70,13 @@ int	win_setup(char **map, t_so_long *game, t_player *player)
 {
 	game = ft_calloc(1, sizeof(t_so_long));
 	if (!game)
-		window_error(game);
+		window_exit(game, EXIT_FAILURE);
 	game->map = map;
 	canvas_setup(game, player);
 	game->player_info->move = 0;
 	win_display(game);
 	mlx_key_hook(game->mlx, ft_key_hook, game);
 	mlx_loop(game->mlx);
-	image_clear(game);
-	mlx_terminate(game->mlx);
-	free(game->map);
-	free(game->player_info);
-	free(game);
+	window_exit(game, EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }

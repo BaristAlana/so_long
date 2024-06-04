@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/04 15:23:21 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/04 15:31:43 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int		win_setup(char **map, t_so_long *game, t_player *player);
 void	ft_key_hook(mlx_key_data_t keydata, void *param);
 
 
-void	window_error(t_so_long *game);
+void	window_exit(t_so_long *game, int status);
 
 
 void	ft_collec(t_so_long *game);
