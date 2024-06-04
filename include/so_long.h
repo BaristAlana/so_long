@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/03 15:53:09 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/04 11:33:14 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,46 @@ typedef struct s_player
 	int	collec;
 }				t_player;
 
+typedef struct s_text{
+	mlx_texture_t	*bg;
+	mlx_texture_t	*wall;
+	mlx_texture_t	*col;
+	mlx_texture_t	*exit;
+	mlx_texture_t	*player;
+}				t_text;
+
+typedef struct s_img{
+	mlx_image_t	*bg;
+	mlx_image_t	*wall;
+	mlx_image_t	*col;
+	mlx_image_t	*exit;
+	mlx_image_t	*player;
+}				t_img;
+
 typedef struct s_so_long {
 	t_player	*player_info;
-	mlx_image_t	*background;
-	mlx_image_t	*wall;
-	mlx_image_t	*player;
-	mlx_image_t	*collectible;
-	mlx_image_t *exit;
-	int32_t			width;
-	int32_t			height;
+	char		**map;
+	mlx_t		*mlx;
+	int32_t		width;
+	int32_t		height;
+	t_img		*img;
+	t_text		*text;
 }				t_so_long;
+
 
 /* ************************************************************************** */
 /*                                  Assets                                    */
 /* ************************************************************************** */
 
-# define bg_img "./assets/background.png"
+# define bg_png "./assets/background.png"
 
-# define wall_img "./assets/wall.png"
+# define wall_png "./assets/wall.png"
 
-# define player_img "./assets/player.png"
+# define player_png "./assets/player.png"
 
-# define collec_img "./assets/collec.png"
+# define collec_png "./assets/collec.png"
 
-# define exit_img "./assets/exit.png"
+# define exit_png "./assets/exit.png"
 
 /* ************************************************************************** */
 /*                                 so_long.c                                  */
@@ -95,6 +111,14 @@ int	flood_fill(char **map, t_player *player);
 /*                                  window.c                                  */
 /* ************************************************************************** */
 
-int win_setup(char **map, t_so_long *game);
+void	image_setup(t_so_long *game);
+
+void	texture_setup(t_so_long *game);
+
+int win_setup(char **map, t_so_long *game, t_player *player);
+
+
+
+void	my_key_hook(mlx_key_data_t keydata, void *param);
 
 #endif

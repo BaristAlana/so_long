@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 11:23:24 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/03 16:19:17 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/04 11:38:41 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,102 +34,85 @@ static t_so_long	*canvas_setup(char**map, t_so_long *game)
 		++j;
 	game->width = j - 1;
 	game->height = i;
+	game->map = map;
+	game->mlx = mlx_init(game->width * 128, game->height * 128, "So Long", true);
+	if (!game->mlx)
+		window_error();
 	ft_printf("x= %i, y= %i\n", game->width, game->height);
+	texture_setup(game);
 	return (game);
 }
 
-int win_setup(char **map, t_so_long *game)
+void	texture_setup(t_so_long *game)
 {
-  // Start mlx
-  game = canvas_setup(map, game);
-  mlx_t* mlx = mlx_init(game->width * 128, game->height * 128, "So Long", false);
-  if (!mlx)
-        window_error();
+	game->text = ft_calloc(1, sizeof(t_text));
+	game->text->bg = mlx_load_png(bg_png);
+	game->text->wall = mlx_load_png(wall_png);
+	game->text->col = mlx_load_png(collec_png);
+	game->text->exit = mlx_load_png(exit_png);
+	game->text->player = mlx_load_png(player_png);
+	image_setup(game);
+}
 
-  // Try to load the file background
-  mlx_texture_t* texture = mlx_load_png(bg_img);
-  if (!texture)
-        window_error();
-  // Convert texture to a displayable image
-  game->background = mlx_texture_to_image(mlx, texture);
-  if (!game->background)
-        window_error();
-  mlx_delete_texture(texture);
+void	image_setup(t_so_long *game)
+{
+	game->img = ft_calloc(1, sizeof(t_img));
+	game->img->bg = mlx_texture_to_image(game->mlx, game->text->bg);
+	game->img->wall = mlx_texture_to_image(game->mlx, game->text->wall);
+	game->img->col = mlx_texture_to_image(game->mlx, game->text->col);
+	game->img->exit = mlx_texture_to_image(game->mlx, game->text->exit);
+	game->img->player = mlx_texture_to_image(game->mlx, game->text->player);
+	mlx_delete_texture(game->text->bg);
+	mlx_delete_texture(game->text->col);
+	mlx_delete_texture(game->text->wall);
+	mlx_delete_texture(game->text->exit);
+	mlx_delete_texture(game->text->player);
+	free(game->text);
+}
 
-  // Try to load the file wall
-  texture = mlx_load_png(wall_img);
-  if (!texture)
-        window_error();
-  // Convert texture to a displayable image
-  game->wall = mlx_texture_to_image(mlx, texture);
-  if (!game->wall)
-        window_error();
-  mlx_delete_texture(texture);
+void	image_clear(t_so_long	*game)
+{
+	mlx_delete_image(game->mlx, game->img->bg);
+	mlx_delete_image(game->mlx, game->img->wall);
+	mlx_delete_image(game->mlx, game->img->col);
+	mlx_delete_image(game->mlx, game->img->exit);
+	mlx_delete_image(game->mlx, game->img->player);
+}
 
-  // Try to load the file player
-  texture = mlx_load_png(player_img);
-  if (!texture)
-        window_error();
-  // Convert texture to a displayable image
-  game->player = mlx_texture_to_image(mlx, texture);
-  if (!game->player)
-        window_error();
-  mlx_delete_texture(texture);
-
-  // Try to load the file collectible
-  texture = mlx_load_png(collec_img);
-  if (!texture)
-        window_error();
-  // Convert texture to a displayable image
-  game->collectible = mlx_texture_to_image(mlx, texture);
-  if (!game->collectible)
-        window_error();
-  mlx_delete_texture(texture);
-
-  // Try to load the file exit
-  texture = mlx_load_png(exit_img);
-  if (!texture)
-        window_error();
-  // Convert texture to a displayable image
-  game->exit = mlx_texture_to_image(mlx, texture);
-  if (!game->exit)
-        window_error();
-  mlx_delete_texture(texture);
-
-  // Display the image
-//  if (mlx_image_to_window(mlx, game->background, 0, 0) < 0)
-        //window_error();
+int win_setup(char **map, t_so_long *game, t_player *player)
+{
+	// Start mlx
+	game = canvas_setup(map, game);
+	// Display the image
+	//  if (mlx_image_to_window(mlx, game->background, 0, 0) < 0)
+		//window_error();
 	int i = 0;
 	int j;
+	game->player_info = player;
 	while(i < game->height)
 	{
 		j = 0;
 		while (j < game->width)
 			{
-				mlx_image_to_window(mlx, game->background, j * 128, i * 128);
+				mlx_image_to_window(game->mlx, game->img->bg, j * 128, i * 128);
 				if (map[i][j] == '1')
-					mlx_image_to_window(mlx, game->wall, j * 128, i * 128);
-				else if (map[i][j] == 'P')
-					mlx_image_to_window(mlx, game->player, j * 128, i * 128);
+					mlx_image_to_window(game->mlx, game->img->wall, j * 128, i * 128);
 				else if (map[i][j] == 'C')
-					mlx_image_to_window(mlx, game->collectible, j * 128, i * 128);
+					mlx_image_to_window(game->mlx, game->img->col, j * 128, i * 128);
 				else if (map[i][j] == 'E')
-					mlx_image_to_window(mlx, game->exit, j * 128, i * 128);
+					mlx_image_to_window(game->mlx, game->img->exit, j * 128, i * 128);
 				++j;
 			}
 			++i;
 	}
+	mlx_image_to_window(game->mlx, game->img->player, game->player_info->player_y * 128, game->player_info->player_x * 128);
 
-  mlx_loop(mlx);
+	mlx_key_hook(game->mlx, my_key_hook, game);
+	mlx_loop(game->mlx);
 
-  mlx_delete_image(mlx, game->background);
-  mlx_delete_image(mlx, game->wall);
-  mlx_delete_image(mlx, game->player);
-  mlx_delete_image(mlx, game->collectible);
-  mlx_delete_image(mlx, game->exit);
-
-  // Optional, terminate will clean up any leftover images (not textures!)
-  mlx_terminate(mlx);
-  free(game);
-  return (EXIT_SUCCESS);
+	// Optional, terminate will clean up any leftover images (not textures!)
+	mlx_terminate(game->mlx);
+	free(game->img);
+	free(game);
+	return (EXIT_SUCCESS);
 }
