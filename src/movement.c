@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:21:36 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/04 15:25:33 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/04 16:01:47 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,19 @@ void	ft_key_hook(mlx_key_data_t keydata, void *param)
 	t_so_long	*game;
 
 	game = param;
-	if ((keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
-		|| (keydata.key == MLX_KEY_UP && keydata.action == MLX_RELEASE))
+	if ((keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+		|| (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS))
 		move_up(game);
-	if ((keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE)
-		|| (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_RELEASE))
+	if ((keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+		|| (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS))
 		move_right(game);
-	if ((keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE)
-		|| (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_RELEASE))
+	if ((keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+		|| (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS))
 		move_down(game);
-	if ((keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE)
-		|| (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_RELEASE))
+	if ((keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
+		|| (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS))
 		move_left(game);
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_RELEASE)
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(game->mlx);
 	ft_collec(game);
 }
