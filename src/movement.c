@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:21:36 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/04 15:23:29 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/04 15:25:33 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	move_up(t_so_long *game)
 	{
 		game->img->player->instances->y -= SIZE;
 		game->player_info->move += 1;
-		ft_printf("Move: %i, Score: %i\n", \
+		ft_printf("Move: %i\n", \
 	game->player_info->move, game->player_info->collec);
 	}
 }
@@ -31,7 +31,7 @@ void	move_right(t_so_long *game)
 	{
 		game->img->player->instances->x += SIZE;
 		game->player_info->move += 1;
-		ft_printf("Move: %i, Score: %i\n", \
+		ft_printf("Move: %i\n", \
 	game->player_info->move, game->player_info->collec);
 	}
 }
@@ -43,7 +43,7 @@ void	move_down(t_so_long *game)
 	{
 		game->img->player->instances->y += SIZE;
 		game->player_info->move += 1;
-		ft_printf("Move: %i, Score: %i\n", \
+		ft_printf("Move: %i\n", \
 	game->player_info->move, game->player_info->collec);
 	}
 }
@@ -55,7 +55,7 @@ void	move_left(t_so_long *game)
 	{
 		game->img->player->instances->x -= SIZE;
 		game->player_info->move += 1;
-		ft_printf("Move: %i, Score: %i\n", \
+		ft_printf("Move: %i\n", \
 	game->player_info->move, game->player_info->collec);
 	}
 }
