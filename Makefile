@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/06/05 14:38:41 by aherbin          ###   ########.fr        #
+#    Updated: 2024/06/05 14:46:46 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(C_FILES)))
 #                                    RULES                                     #
 # **************************************************************************** #
 
-all: libft libmlx $(NAME)
+all: check-and-reinit-submodules libft libmlx $(NAME)
 
 libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
@@ -74,4 +74,11 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+check-and-reinit-submodules:
+    @if git submodule status | egrep -q '^[-+]' ; then \
+            echo "INFO: Need to reinitialize git submodules"; \
+            git submodule update --init; \
+    fi
+
+.PHONY: all clean fclean re libmlx check-and-reinit-submodules
+
