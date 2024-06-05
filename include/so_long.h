@@ -6,16 +6,16 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/04 15:31:43 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/05 14:37:32 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../MLX42/include/MLX42/MLX42.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 
-# include "libft.h"
+# include "../lib/libft/include/libft.h"
 
 # include <stdlib.h>
 

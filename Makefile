@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/06/04 15:49:56 by aherbin          ###   ########.fr        #
+#    Updated: 2024/06/05 14:38:41 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,17 @@ CC = cc
 
 CCFLAGS = -Wall -Wextra -Werror
 
-INCLUDES = -Iinclude -IMLX42/include -Ilibft/include
+INCLUDES = -I ./include -I ./$(MLX42)/include -I ./$(LIBFT)/include
 
-LIBFT = libft/libft.a
+#LIBFT = libft/libft.a
 
-CC_LINKER = -Llibft -lft -LMLX42 -lmlx42 -ldl -lglfw -lm -lpthread
+#CC_LINKER = -Llibft -lft -LMLX42 -lmlx42 -ldl -lglfw -lm -lpthread
+
+LIBFT	:= ./lib/libft
+
+LIBMLX	:= ./lib/MLX42
+
+LIBS	:= $(LIBFT)/libft.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 RM = rm -f
 
@@ -45,21 +51,24 @@ SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(C_FILES)))
 #                                    RULES                                     #
 # **************************************************************************** #
 
-all: $(NAME)
+all: libft libmlx $(NAME)
 
-$(NAME): $(LIBFT) $(SRC)
-	$(CC) -g $(SRC) $(CCFLAGS) $(INCLUDES) $(CC_LINKER) -o $(NAME)
+libmlx:
+	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+
+$(NAME): $(SRC)
+	$(CC) -g $(SRC) $(CCFLAGS) $(INCLUDES) $(LIBS) -o $(NAME)
 	@echo "$(GREEN)$@ $(BLUE)successfully compiled"
 
-$(LIBFT):
-	make -C libft
+libft:
+	make -C $(LIBFT)
 
 clean:
 	@$(RM) $(NAME)
 	@echo "$(RED)$(NAME) $(BLUE)successfully deleted"
 
 fclean: clean
-	make fclean -C libft
+	make fclean -C $(LIBFT)
 #	@$(RM) $(NAME)
 #	@echo "$(RED)$(NAME) $(BLUE)successfully deleted"
 
