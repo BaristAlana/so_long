@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:16:25 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/04 15:10:17 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/06 13:20:38 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,4 @@ int	main(int argc, char **argv)
 	game = NULL;
 	win_setup(map, game, player);
 }
+
