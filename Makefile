@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/06/10 11:19:26 by aherbin          ###   ########.fr        #
+#    Updated: 2024/06/10 11:20:31 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ $(MLX42AR): libmlx
 
 $(LIBFTAR): libft
 
-$(NAME): submodules $(OBJS) | $(LIBFTAR) $(MLX42AR)
+$(NAME): $(OBJS) | submodules $(LIBFTAR) $(MLX42AR)
 	$(CC) ${OBJS} $(CCFLAGS) $(INCLUDES) $(LIBS) -o $(NAME)
 	@echo "$(GREEN)$@ $(BLUE)successfully compiled"
 
