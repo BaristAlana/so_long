@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/06/06 13:56:00 by aherbin          ###   ########.fr        #
+#    Updated: 2024/06/10 11:11:13 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ $(MLX42AR): libmlx
 
 $(LIBFTAR): libft
 
-$(NAME): $(LIBFTAR) $(MLX42AR) ${OBJS}
+$(NAME): $(OBJS) | $(LIBFTAR) $(MLX42AR)
 	$(CC) ${OBJS} $(CCFLAGS) $(INCLUDES) $(LIBS) -o $(NAME)
 	@echo "$(GREEN)$@ $(BLUE)successfully compiled"
 
@@ -69,8 +69,8 @@ libft:
 	@make -C $(LIBFT) --no-print-directory
 
 clean:
-	${RM} ${BIN} ${DEBUGBIN}
-#	@echo "$(RED)$(NAME) $(BLUE)successfully deleted"
+	@${RM} ${BIN} ${DEBUGBIN}
+	@echo "$(RED) OBJS $(BLUE)successfully deleted"
 
 fclean: clean
 	make fclean -C $(LIBFT)
