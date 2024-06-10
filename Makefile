@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/06/10 11:11:13 by aherbin          ###   ########.fr        #
+#    Updated: 2024/06/10 11:19:26 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ submodules:
 			git submodule update --init; \
 	fi
 
-libmlx: submodules
+libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 ${BIN}/%o: src/%c
@@ -61,7 +61,7 @@ $(MLX42AR): libmlx
 
 $(LIBFTAR): libft
 
-$(NAME): $(OBJS) | $(LIBFTAR) $(MLX42AR)
+$(NAME): submodules $(OBJS) | $(LIBFTAR) $(MLX42AR)
 	$(CC) ${OBJS} $(CCFLAGS) $(INCLUDES) $(LIBS) -o $(NAME)
 	@echo "$(GREEN)$@ $(BLUE)successfully compiled"
 
