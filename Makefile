@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/06/10 11:20:31 by aherbin          ###   ########.fr        #
+#    Updated: 2024/06/10 11:24:13 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,6 @@ SRC := src/so_long.c src/utils.c src/map_tools.c src/flood_fill.c src/window.c s
 #SRC_DIR := src/
 #SRC := $(addprefix $(SRC_DIR), $(addsuffix .c, $(C_FILES)))
 OBJS	= ${SRC:src/%c=${BIN}/%o}
-MLX42AR := $(LIBMLX)/build/libmlx42.a
-LIBFTAR := $(LIBFT)/libft.a
-
 CYAN := \033[1;36m
 GREEN := \033[1;32m
 RED := \033[1;31m
@@ -54,14 +51,10 @@ libmlx:
 ${BIN}/%o: src/%c
 	${CC} -c $< ${CFLAGS} ${IFLAGS} -o $@
 
-${BIN}:
+${BIN}: | submodules
 	@mkdir -p ${BIN}
 
-$(MLX42AR): libmlx
-
-$(LIBFTAR): libft
-
-$(NAME): $(OBJS) | submodules $(LIBFTAR) $(MLX42AR)
+$(NAME): $(OBJS) | libmlx libft
 	$(CC) ${OBJS} $(CCFLAGS) $(INCLUDES) $(LIBS) -o $(NAME)
 	@echo "$(GREEN)$@ $(BLUE)successfully compiled"
 
@@ -79,4 +72,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re ${libmlx} ${LIBFT} submodules
+.PHONY: all clean fclean re submodules
