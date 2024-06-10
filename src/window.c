@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 11:23:24 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/04 15:40:03 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/10 11:29:10 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static t_so_long	*canvas_setup(t_so_long *game, t_player *player)
 	game->height * SIZE, "So Long", true);
 	if (!game->mlx)
 		window_exit(game, EXIT_FAILURE);
-	ft_printf("x= %i, y= %i\n", game->width, game->height);
 	texture_setup(game);
 	return (game);
 }
