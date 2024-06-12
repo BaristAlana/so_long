@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/06/10 11:24:13 by aherbin          ###   ########.fr        #
+#    Updated: 2024/06/12 17:04:56 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,13 +49,13 @@ libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 ${BIN}/%o: src/%c
-	${CC} -c $< ${CFLAGS} ${IFLAGS} -o $@
+	${CC} -g -O0 -c $< ${CFLAGS} ${IFLAGS} -o $@
 
 ${BIN}: | submodules
 	@mkdir -p ${BIN}
 
 $(NAME): $(OBJS) | libmlx libft
-	$(CC) ${OBJS} $(CCFLAGS) $(INCLUDES) $(LIBS) -o $(NAME)
+	$(CC) -g -O0 ${OBJS} $(CCFLAGS) $(INCLUDES) $(LIBS) -o $(NAME)
 	@echo "$(GREEN)$@ $(BLUE)successfully compiled"
 
 libft:
