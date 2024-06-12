@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:39:49 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/04 15:00:20 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/12 12:17:26 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_exit(char *errmsg, int status)
 {
 	if (!errmsg)
 		exit(1);
-	ft_putendl_fd("Error", 2);
+	ft_putendl_fd("Error", 1);
 	ft_putendl_fd(errmsg, 2);
 	exit(status);
 }
