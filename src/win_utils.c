@@ -6,13 +6,13 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 15:13:27 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/13 11:56:50 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/13 12:07:53 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static void	text_clear(t_so_long *game)
+void	text_clear(t_so_long *game)
 {
 	if (game->text->bg)
 		mlx_delete_texture(game->text->bg);
@@ -46,7 +46,7 @@ void	image_clear(t_so_long	*game)
 	game->img = NULL;
 }
 
-void	check_texture_size(t_so_long *game)
+static void	check_texture_size(t_so_long *game)
 {
 	if (game->text->bg->height != game->text->bg->width \
 	|| game->text->bg->height != SIZE || game->text->bg->width != SIZE)

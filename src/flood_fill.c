@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 11:24:31 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/04 15:10:37 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/13 12:06:16 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	depth_first_search(char **map, int x, int y, t_player *player)
 	depth_first_search(map, x, y - 1, player);
 }
 
-void	fill_struct(char c, int x, int y, t_player *player)
+static void	fill_struct(char c, int x, int y, t_player *player)
 {
 	if (c == 'P')
 	{
@@ -55,7 +55,7 @@ void	fill_struct(char c, int x, int y, t_player *player)
 	}
 }
 
-void	find_coord(char **map, t_player *player, char c)
+static void	find_coord(char **map, t_player *player, char c)
 {
 	int			i;
 	int			j;

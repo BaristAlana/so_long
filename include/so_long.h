@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/05 14:37:32 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/13 12:08:30 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,21 +116,32 @@ int	flood_fill(char **map, t_player *player);
 /*                                  window.c                                  */
 /* ************************************************************************** */
 
-void	image_setup(t_so_long *game);
+void	window_exit(t_so_long *game, int status);
+
+int		win_setup(char **map, t_so_long *game, t_player *player);
+
+/* ************************************************************************** */
+/*                                 win_utils.c                                */
+/* ************************************************************************** */
+
+void	text_clear(t_so_long *game);
 
 void	image_clear(t_so_long	*game);
 
 void	texture_setup(t_so_long *game);
 
-int		win_setup(char **map, t_so_long *game, t_player *player);
+void	image_setup(t_so_long *game);
 
-
+/* ************************************************************************** */
+/*                                 movement.c                                 */
+/* ************************************************************************** */
 
 void	ft_key_hook(mlx_key_data_t keydata, void *param);
 
 
-void	window_exit(t_so_long *game, int status);
-
+/* ************************************************************************** */
+/*                                   score.c                                  */
+/* ************************************************************************** */
 
 void	ft_collec(t_so_long *game);
 
