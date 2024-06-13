@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 11:23:24 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/13 11:57:06 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/13 15:28:35 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	window_exit(t_so_long *game, int status)
 		ft_exit((char *)mlx_strerror(mlx_errno), mlx_errno);
 	else if (status == 2)
 		ft_exit("The assets size is invalid", EXIT_FAILURE);
+	exit(EXIT_SUCCESS);
 }
 
 static t_so_long	*canvas_setup(t_so_long *game, t_player *player)
@@ -88,7 +89,7 @@ static void	win_display(t_so_long *game)
 	game->player_info->player_y * SIZE, game->player_info->player_x * SIZE);
 }
 
-int	win_setup(char **map, t_so_long *game, t_player *player)
+void	win_setup(char **map, t_so_long *game, t_player *player)
 {
 	game = ft_calloc(1, sizeof(t_so_long));
 	if (!game)
@@ -100,5 +101,4 @@ int	win_setup(char **map, t_so_long *game, t_player *player)
 	mlx_key_hook(game->mlx, ft_key_hook, game);
 	mlx_loop(game->mlx);
 	window_exit(game, EXIT_SUCCESS);
-	return (EXIT_SUCCESS);
 }

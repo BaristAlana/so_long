@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:39:49 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/12 19:14:39 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/13 14:43:12 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_file_extension(char *file)
 	return (ft_strncmp(temp, ".ber", len));
 }
 
-int	ft_exit(char *errmsg, int status)
+void	ft_exit(char *errmsg, int status)
 {
 	if (!errmsg)
 		exit(1);
