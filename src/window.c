@@ -6,11 +6,34 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 11:23:24 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/10 11:29:10 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/13 11:57:06 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+void	window_exit(t_so_long *game, int status)
+{
+	if (game->text)
+		text_clear(game);
+	if (game->img)
+		image_clear(game);
+	if (game->player_info)
+		free(game->player_info);
+	if (game->map)
+		free_map(game->map);
+	if (game->mlx)
+	{
+		mlx_close_window(game->mlx);
+		mlx_terminate(game->mlx);
+	}
+	if (game)
+		free(game);
+	if (status == EXIT_FAILURE)
+		ft_exit((char *)mlx_strerror(mlx_errno), mlx_errno);
+	else if (status == 2)
+		ft_exit("The assets size is invalid", EXIT_FAILURE);
+}
 
 static t_so_long	*canvas_setup(t_so_long *game, t_player *player)
 {
