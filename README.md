@@ -9,11 +9,12 @@
 
 ## Requirement 
 
-### MLX42 dependencies, 
-### Make,
-### gcc/clang
++ MLX42 dependencies, 
++ Make,
++ gcc/clang
 
 ## Usage
 
 the program works with a map file (.ber). run with `./so_long map.ber`.
-A few map files are available inside the hidden folder [.map](), but feel free to create your own by following the rules of the subject!
+
+A few map files are available inside the hidden folder [.map](.map), but feel free to create your own by following the rules of the subject!
