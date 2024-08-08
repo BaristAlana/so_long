@@ -65,7 +65,7 @@ libft:
 	@make -C $(LIBFT) --no-print-directory
 
 clean:
-	@${RM} ${BIN} ${DEBUGBIN}
+	@${RM} ${BIN}
 	@echo "$(RED) OBJS $(BLUE)successfully deleted"
 
 fclean: clean
