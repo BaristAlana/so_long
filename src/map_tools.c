@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:49:41 by aherbin           #+#    #+#             */
-/*   Updated: 2024/08/28 11:49:48 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/08/28 12:46:01 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,20 @@ static void	is_map_bordered(char **map, int len, t_player *player)
 	while (map[i])
 	{
 		if (map[i][0] != '1' || map[i][len - 2] != '1')
-			exit_invalid_map(map);
+			exit_invalid_map(map, player);
 		++i;
 	}
 	j = 0;
 	while (j < len - 1)
 	{
 		if (map[i - 1][j] != '1' || map[0][j] != '1')
-			exit_invalid_map(map);
+			exit_invalid_map(map, player);
 		++j;
 	}
 	if (count_component(map, 'E', NULL) != 1 \
 	|| count_component(map, 'P', NULL) != 1 \
 	|| count_component(map, 'C', player) < 1)
-		exit_invalid_map(map);
+		exit_invalid_map(map, player);
 }
 
 static char	*last_line(char *line)
@@ -113,11 +113,11 @@ void	check_map(char **map, t_player *player)
 	{
 		j = 0;
 		if ((int)ft_strlen(map[i]) != len)
-			exit_invalid_map(map);
+			exit_invalid_map(map, player);
 		while (map[i][j])
 		{
 			if (ft_strchr("01CEP\n", map[i][j]) == NULL)
-				exit_invalid_map(map);
+				exit_invalid_map(map, player);
 			++j;
 		}
 		++i;

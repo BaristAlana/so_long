@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/08/28 12:26:38 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/08/28 12:45:33 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void	free_map(char **map);
  *
  * @param map The array to free
  */
-void	exit_invalid_map(char **map);
+void	exit_invalid_map(char **map, t_player *player);
 
 /**
  * a function used to count the lines on a file, using GNL

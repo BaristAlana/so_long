@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:16:25 by aherbin           #+#    #+#             */
-/*   Updated: 2024/08/28 11:49:42 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/08/28 12:53:55 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	main(int argc, char **argv)
 	player = ft_calloc(1, sizeof(t_player));
 	check_map(map, player);
 	if (!player)
-		exit_invalid_map(map);
+		exit_invalid_map(map, NULL);
 	map_2 = read_map(argv[1]);
 	if (!flood_fill(map_2, player))
-		exit_invalid_map(map);
+		exit_invalid_map(map, player);
 	game = NULL;
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	win_setup(map, game, player);

@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:39:49 by aherbin           #+#    #+#             */
-/*   Updated: 2024/08/28 11:49:55 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/08/28 12:43:55 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ void	free_map(char **map)
 	free(map);
 }
 
-void	exit_invalid_map(char **map)
+void	exit_invalid_map(char **map, t_player *player)
 {
 	free_map(map);
+	if (player)
+		free(player);
 	ft_exit("Map appears to be invalid.", EXIT_FAILURE);
 }
 
