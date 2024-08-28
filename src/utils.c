@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:39:49 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/04 15:00:20 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/08/28 10:36:57 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ void	free_map(char **map)
 	if (!map)
 		return ;
 	i = 0;
-	while (map[i] != NULL)
+	while (map[i])
 	{
 		free(map[i]);
 		++i;
 	}
+	free(map[i]);
 	free(map);
 }
 

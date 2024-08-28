@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/06/05 14:48:50 by aherbin          ###   ########.fr        #
+#    Updated: 2024/08/28 11:45:54 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ LIBMLX	:= ./lib/MLX42
 
 LIBS	:= $(LIBFT)/libft.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
-RM = rm -f
+RM = rm -rf
 
 MKDIR_P = mkdir -p
 
@@ -64,13 +64,13 @@ libft:
 	make -C $(LIBFT)
 
 clean:
-	@$(RM) $(NAME)
-	@echo "$(RED)$(NAME) $(BLUE)successfully deleted"
+	@$(RM) $(LIBMLX)/build
+	@make fclean -C $(LIBFT)
+	@echo "$(BLUE)Compiled objects and dependencies successfully deleted"
 
 fclean: clean
-	make fclean -C $(LIBFT)
-#	@$(RM) $(NAME)
-#	@echo "$(RED)$(NAME) $(BLUE)successfully deleted"
+	@rm $(NAME)
+	@echo "\n$(RED)$(NAME) $(BLUE)successfully deleted"
 
 re: fclean all
 
