@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/08/28 14:35:50 by aherbin          ###   ########.fr        #
+#    Updated: 2024/08/28 14:58:49 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,29 +49,36 @@ all: $(BIN) $(NAME)
 
 ${BIN}/%o: src/%c
 	@${CC} -c $< ${CFLAGS} ${IFLAGS} -o $@
+	@echo "$(BLUE)Compiling $(GREEN)$@ $(BLUE)..."
 
 ${BIN}:
 	@mkdir -p ${BIN}
 
-$(NAME): $(OBJS) | $(LIBMLXAR) $(LIBFTAR)
-	@echo "$(GREEN)Compilation ${CLR_RMV}of ${YELLOW}$(NAME) ${CLR_RMV}..."
+$(NAME): $(LIBMLXAR) $(LIBFTAR) $(OBJS)
+	@echo "$(GREEN)Compilation ${CLR_RMV}of ${CYAN}$(NAME) ${CLR_RMV}..."
 	@$(CC) ${OBJS} $(CCFLAGS) $(INCLUDES) $(LIBS) -o $(NAME)
-	@echo "$(YELLOW)$(NAME)$(BLUE) compiled $(GREEN)✔️$(CLR_RMV)"
+	@echo "$(CYAN)$(NAME)$(BLUE) compiled $(GREEN)✔️$(CLR_RMV)"
 
 $(LIBFTAR):
+	@echo "$(YELLOW)----- Libft -----$(CLR_RMV)"
 	@make -C $(LIBFT) --no-print-directory
+	@echo "$(YELLOW)-----------------\n$(CLR_RMV)"
 
 $(LIBMLXAR):
+	@echo "$(YELLOW)----- MLX42 -----$(CLR_RMV)"
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4 --no-print-directory
+	@echo "$(YELLOW)-----------------\n$(CLR_RMV)"
 
 clean:
 	@${RM} ${BIN}
-	@echo "$(RED)OBJS $(BLUE)successfully deleted"
+	@echo "$(CYAN)$(NAME) $(RED)OBJS $(BLUE)successfully deleted\n"
 
 fclean: clean
 	@make fclean -C $(LIBFT) --no-print-directory
+	@echo ""
 	@$(RM) $(NAME)
-	@echo "$(RED)$(NAME) $(BLUE)successfully deleted"
+	@$(RM) $(LIBMLXAR)
+	@echo "$(CYAN)$(NAME) $(BLUE)successfully deleted"
 
 re: fclean all
 
