@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/13 15:43:27 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/08/28 12:26:38 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_so_long
  * Said resolution can be changed on compile with SIZE=*size*
  */
 # ifndef SIZE
-#  define SIZE 128
+#  define SIZE 64
 # endif
 
 /* ************************************************************************** */
