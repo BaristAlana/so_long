@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/08/28 16:58:05 by aherbin          ###   ########.fr        #
+#    Updated: 2024/08/28 16:59:00 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ LIBS		:= $(LIBFTAR) $(LIBMLXAR) -ldl -lglfw -pthread -lm
 #                                    RULES                                     #
 # **************************************************************************** #
 
-all: $(BIN) $(NAME) | submodules
+all: submodules $(BIN) $(NAME)
 
 submodules:
 	@if git submodule status | egrep -q '^[-+]' ; then \
