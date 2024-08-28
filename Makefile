@@ -6,7 +6,7 @@
 #    By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:55:12 by aherbin           #+#    #+#              #
-#    Updated: 2024/08/28 14:58:49 by aherbin          ###   ########.fr        #
+#    Updated: 2024/08/28 16:56:39 by aherbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,13 @@ LIBS		:= $(LIBFTAR) $(LIBMLXAR) -ldl -lglfw -pthread -lm
 #                                    RULES                                     #
 # **************************************************************************** #
 
-all: $(BIN) $(NAME)
+submodules:
+	@if git submodule status | egrep -q '^[-+]' ; then \
+		echo "INFO: Need to reinitialize git submodules"; \
+			git submodule update --init; \
+	fi
+
+all: $(BIN) $(NAME) | submodules
 
 ${BIN}/%o: src/%c
 	@${CC} -c $< ${CFLAGS} ${IFLAGS} -o $@
@@ -82,4 +88,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re submodules
