@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:39:49 by aherbin           #+#    #+#             */
-/*   Updated: 2024/08/28 10:36:57 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/08/28 11:49:55 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,30 @@ int	check_file_extension(char *file)
 {
 	int		len;
 	char	*temp;
+	char	*subfolder;
 
 	temp = ft_strrchr(file, '.');
+	subfolder = ft_strrchr(file, '/');
 	if (!temp)
-		return (1);
+		ft_exit("Bad extension", EXIT_FAILURE);
 	len = ft_strlen(temp);
 	if (len != 4)
-		return (1);
+		ft_exit("Bad extension", EXIT_FAILURE);
+	if (subfolder)
+	{
+		++subfolder;
+		if (ft_strncmp(subfolder, temp, ft_strlen(subfolder)) == 0)
+			ft_exit("Wrong file", EXIT_FAILURE);
+	}
 	return (ft_strncmp(temp, ".ber", len));
 }
 
-int	ft_exit(char *errmsg, int status)
+void	ft_exit(char *errmsg, int status)
 {
 	if (!errmsg)
 		exit(1);
-	ft_putendl_fd("Error", 2);
-	ft_putendl_fd(errmsg, 2);
+	ft_putendl_fd("Error", 1);
+	ft_putendl_fd(errmsg, 1);
 	exit(status);
 }
 
@@ -40,7 +48,9 @@ void	free_map(char **map)
 	int	i;
 
 	if (!map)
+	{
 		return ;
+	}
 	i = 0;
 	while (map[i])
 	{

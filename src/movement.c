@@ -6,13 +6,13 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:21:36 by aherbin           #+#    #+#             */
-/*   Updated: 2024/06/04 16:01:47 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/06/13 12:05:03 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	move_up(t_so_long *game)
+static void	move_up(t_so_long *game)
 {
 	if (game->map[game->img->player->instances->y / SIZE - 1]
 		[game->img->player->instances->x / SIZE] != '1')
@@ -24,7 +24,7 @@ void	move_up(t_so_long *game)
 	}
 }
 
-void	move_right(t_so_long *game)
+static void	move_right(t_so_long *game)
 {
 	if (game->map[game->img->player->instances->y / SIZE]
 		[game->img->player->instances->x / SIZE + 1] != '1')
@@ -36,7 +36,7 @@ void	move_right(t_so_long *game)
 	}
 }
 
-void	move_down(t_so_long *game)
+static void	move_down(t_so_long *game)
 {
 	if (game->map[game->img->player->instances->y / SIZE + 1]
 		[game->img->player->instances->x / SIZE] != '1')
@@ -48,7 +48,7 @@ void	move_down(t_so_long *game)
 	}
 }
 
-void	move_left(t_so_long *game)
+static void	move_left(t_so_long *game)
 {
 	if (game->map[game->img->player->instances->y / SIZE]
 		[game->img->player->instances->x / SIZE - 1] != '1')

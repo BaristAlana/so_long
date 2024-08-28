@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:49:41 by aherbin           #+#    #+#             */
-/*   Updated: 2024/08/28 10:36:25 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/08/28 11:49:48 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,15 @@ static void	is_map_bordered(char **map, int len, t_player *player)
 		exit_invalid_map(map);
 }
 
+static char	*last_line(char *line)
+{
+	char	*temp;
+
+	temp = ft_strjoin(line, "\n");
+	free(line);
+	return (temp);
+}
+
 char	**read_map(char *file)
 {
 	char	**map;
@@ -73,22 +82,20 @@ char	**read_map(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_exit("Could not open map file. \
-Check for typos or permissions!", EXIT_FAILURE);
+		ft_exit("Could not open map file.", EXIT_FAILURE);
 	n_line = n_line_gnl(fd);
+	if (n_line <= 1)
+		ft_exit("Empty map file", EXIT_FAILURE);
 	map = malloc(sizeof(char *) * (n_line + 1));
 	if (!map)
 		ft_exit("Could not allocate memory!", EXIT_FAILURE);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_exit("Could not open map file. \
-Check for typos or permissions!", EXIT_FAILURE);
+		ft_exit("Could not open map file.", EXIT_FAILURE);
 	i = 0;
 	while (i < n_line)
-	{
-		map[i] = get_next_line(fd);
-		++i;
-	}
+		map[i++] = get_next_line(fd);
+	map[i - 1] = last_line(map[i - 1]);
 	map[i] = NULL;
 	close(fd);
 	return (map);
@@ -102,7 +109,7 @@ void	check_map(char **map, t_player *player)
 
 	i = 0;
 	len = ft_strlen(map[i]);
-	while (map[i])
+	while (map[i] != NULL)
 	{
 		j = 0;
 		if ((int)ft_strlen(map[i]) != len)
