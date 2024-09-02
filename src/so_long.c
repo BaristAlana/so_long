@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:16:25 by aherbin           #+#    #+#             */
-/*   Updated: 2024/08/28 12:53:55 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:45:28 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	main(int argc, char **argv)
 		ft_exit("Wrong number of arguments", EXIT_FAILURE);
 	map = read_map(argv[1]);
 	player = ft_calloc(1, sizeof(t_player));
-	check_map(map, player);
 	if (!player)
 		exit_invalid_map(map, NULL);
+	check_map(map, player);
 	map_2 = read_map(argv[1]);
 	if (!flood_fill(map_2, player))
 		exit_invalid_map(map, player);
