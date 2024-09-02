@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 10:39:49 by aherbin           #+#    #+#             */
-/*   Updated: 2024/08/30 10:12:46 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:16:30 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	check_file_extension(char *file)
 	char	*temp;
 	char	*subfolder;
 
+	len = ft_strlen(file);
 	temp = ft_strrchr(file, '.');
 	subfolder = ft_strrchr(file, '/');
 	if (!temp)
 		ft_exit("Bad extension", EXIT_FAILURE);
-	len = ft_strlen(temp);
-	if (len != 4)
+	if (len <= 4 || !file[len - 5])
 		ft_exit("Bad extension", EXIT_FAILURE);
 	if (subfolder)
 	{
@@ -31,7 +31,7 @@ int	check_file_extension(char *file)
 		if (ft_strncmp(subfolder, temp, ft_strlen(subfolder)) == 0)
 			ft_exit("Wrong file", EXIT_FAILURE);
 	}
-	return (ft_strncmp(temp, ".ber", len));
+	return (ft_strncmp(temp, ".ber", ft_strlen(temp)));
 }
 
 void	ft_exit(char *errmsg, int status)
