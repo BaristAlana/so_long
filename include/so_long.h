@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/08/28 12:45:33 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/09/03 21:21:45 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,15 +113,15 @@ typedef struct s_so_long
 /*                                  Assets                                    */
 /* ************************************************************************** */
 
-# define bg_png "./assets/background.png"
+# define BG_PNG "./assets/background.png"
 
-# define wall_png "./assets/wall.png"
+# define WALL_PNG "./assets/wall.png"
 
-# define player_png "./assets/player.png"
+# define PLAYER_PNG "./assets/player.png"
 
-# define collec_png "./assets/collec.png"
+# define COLLEC_PNG "./assets/collec.png"
 
-# define exit_png "./assets/exit.png"
+# define EXIT_PNG "./assets/exit.png"
 
 /* ************************************************************************** */
 /*                                 so_long.c                                  */

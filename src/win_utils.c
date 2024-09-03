@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 15:13:27 by aherbin           #+#    #+#             */
-/*   Updated: 2024/08/28 12:28:14 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/09/03 21:21:45 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,19 @@ static void	check_texture_size(t_so_long *game)
 void	texture_setup(t_so_long *game)
 {
 	game->text = ft_calloc(1, sizeof(t_text));
-	game->text->bg = mlx_load_png(bg_png);
+	game->text->bg = mlx_load_png(BG_PNG);
 	if (!game->text->bg)
 		window_exit(game, EXIT_FAILURE);
-	game->text->wall = mlx_load_png(wall_png);
+	game->text->wall = mlx_load_png(WALL_PNG);
 	if (!game->text->wall)
 		window_exit(game, EXIT_FAILURE);
-	game->text->col = mlx_load_png(collec_png);
+	game->text->col = mlx_load_png(COLLEC_PNG);
 	if (!game->text->col)
 		window_exit(game, EXIT_FAILURE);
-	game->text->exit = mlx_load_png(exit_png);
+	game->text->exit = mlx_load_png(EXIT_PNG);
 	if (!game->text->exit)
 		window_exit(game, EXIT_FAILURE);
-	game->text->player = mlx_load_png(player_png);
+	game->text->player = mlx_load_png(PLAYER_PNG);
 	if (!game->text->player)
 		window_exit(game, EXIT_FAILURE);
 	check_texture_size(game);
