@@ -6,7 +6,7 @@
 /*   By: aherbin <aherbin@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:15:18 by aherbin           #+#    #+#             */
-/*   Updated: 2024/09/03 21:21:45 by aherbin          ###   ########.fr       */
+/*   Updated: 2024/10/15 16:53:46 by aherbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 # include <unistd.h>
 
 # include <fcntl.h>
+
+# ifdef _WEB_ASM_
+#  include <emscripten/html5.h>
+
+#  include <emscripten/emscripten.h>
+# endif
 
 /**
  * @brief A structure hosting useful information about the player character
